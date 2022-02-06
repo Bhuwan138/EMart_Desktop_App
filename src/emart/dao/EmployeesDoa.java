@@ -49,4 +49,20 @@ public class EmployeesDoa {
         int result = ps.executeUpdate();
         return result == 1;
     }
+    
+    public static List<EmployeesPojo> getAllEmployee()throws SQLException{
+        Connection conn  = DBConnection.getConnection();
+        Statement st = conn.createStatement();
+        ResultSet rs  =  st.executeQuery("select * from employees");
+        List<EmployeesPojo> emp = new ArrayList<>();
+        while(rs.next()){
+            EmployeesPojo empList = new EmployeesPojo();
+            empList.setEmployeeId(rs.getString(1));
+            empList.setEmployeeName(rs.getString(2));
+            empList.setJob(rs.getString(3));
+            empList.setSalary(rs.getDouble(4));
+            emp.add(empList);
+        }    
+        return emp;
+    }
 }
