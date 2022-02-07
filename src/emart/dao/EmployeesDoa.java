@@ -65,4 +65,41 @@ public class EmployeesDoa {
         }    
         return emp;
     }
+    
+    public static List<String> getAllEmpId() throws SQLException{
+        Connection conn  = DBConnection.getConnection();
+        Statement ps = conn.createStatement();
+        ResultSet rs = ps.executeQuery("select empid from employees order by empid");
+        List<String> empId = new ArrayList<>();
+        while(rs.next()){
+            empId.add(rs.getString(1));
+        }
+        return empId;
+    }
+    
+    public static EmployeesPojo findEmpById(String empId) throws SQLException{
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement("select * from employees where empid = ?");
+        ps.setString(1, empId);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        EmployeesPojo emp = new EmployeesPojo();
+        emp.setEmployeeId(rs.getString(1));
+        emp.setEmployeeName(rs.getString(2));
+        emp.setJob(rs.getString(3));
+        emp.setSalary(rs.getDouble(4));
+        return emp;
+    } 
+    
+    public static boolean updateEmployee(EmployeesPojo emp)throws SQLException{
+       Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement("update employees set empname = ?, job = ?, salary = ? where empid = ?");
+        ps.setString(1, emp.getEmployeeId());
+        ps.setString(2, emp.getEmployeeName());
+        ps.setString(3, emp.getJob());
+        ps.setDouble(4, emp.getSalary());
+        int result = ps.executeUpdate();
+        return result == 1;
+    }
+    
 }

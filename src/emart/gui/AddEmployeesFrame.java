@@ -323,7 +323,7 @@ public class AddEmployeesFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 
-    private boolean isEmpty() {
+    protected boolean isEmpty() {
         String empName = txtEmpName.getText().trim();
         String salary = txtEmpSalary.getText().trim();
         if(empName.isEmpty() || salary.isEmpty()){
