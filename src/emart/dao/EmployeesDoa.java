@@ -99,7 +99,20 @@ public class EmployeesDoa {
         ps.setString(2, emp.getJob());
         ps.setDouble(3, emp.getSalary());
         int result = ps.executeUpdate();
-        return result == 1;
+        if(result == 0)
+            return false;
+        else{
+            boolean resultIsUser = UserDoa.isUserPresent(emp.getEmployeeId());
+            if(resultIsUser == false)
+                return true;
+            ps = conn.prepareStatement("update users set usertype = ?, username = ? where empid = ?");
+            ps.setString(3, emp.getEmployeeId());
+            ps.setString(1, emp.getJob());
+            ps.setString(2, emp.getEmployeeName());
+            int resultUser = ps.executeUpdate();
+            return resultUser==1; 
+        }
+        
     }
     
 }

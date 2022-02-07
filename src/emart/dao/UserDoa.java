@@ -36,5 +36,12 @@ public class UserDoa {
         return false;
     }
     
+    public static boolean isUserPresent(String empId)throws SQLException{
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement("select 1 from users where empid = ?");
+        ps.setString(1, empId);
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
+    }
    
 }
