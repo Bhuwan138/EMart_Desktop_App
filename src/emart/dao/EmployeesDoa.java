@@ -92,7 +92,7 @@ public class EmployeesDoa {
     } 
     
     public static boolean updateEmployee(EmployeesPojo emp)throws SQLException{
-       Connection conn = DBConnection.getConnection();
+        Connection conn = DBConnection.getConnection();
         PreparedStatement ps = conn.prepareStatement("update employees set empname = ?, job = ?, salary = ? where empid = ?");
         ps.setString(4, emp.getEmployeeId());
         ps.setString(1, emp.getEmployeeName());
@@ -113,6 +113,14 @@ public class EmployeesDoa {
             return resultUser==1; 
         }
         
+    }
+    
+    public static boolean deleteEmployee(String empId)throws SQLException{
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement("delete from employees where empid = ?");
+        ps.setString(1, empId);
+        int result = ps.executeUpdate();
+        return result ==1;
     }
     
 }

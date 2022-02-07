@@ -351,6 +351,7 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
 
     private void getEmpId() {
         try{
+            cbId.removeAllItems();
             List<String> empId = EmployeesDoa.getAllEmpId();
             for(String id: empId){
                 cbId.addItem(id);
