@@ -126,6 +126,11 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
 
         txtEmpSalary.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
         txtEmpSalary.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEmpSalary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpSalaryActionPerformed(evt);
+            }
+        });
 
         cbId.setFont(new java.awt.Font("Yu Gothic", 1, 18)); // NOI18N
         cbId.addActionListener(new java.awt.event.ActionListener() {
@@ -243,9 +248,9 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
-        AddEmployeesFrame aef = new AddEmployeesFrame();
+        
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        if(!aef.isEmpty()){
+        if(!isEmpty()){
             JOptionPane.showMessageDialog(null, "Please Fill all the value properly","Incomplete",JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -255,13 +260,14 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
             emp.setEmployeeName(txtEmpName.getText());
             emp.setJob(cbJob.getSelectedItem().toString());
             emp.setSalary(Double.parseDouble(txtEmpSalary.getText()));
-            boolean result = EmployeesDoa.addEmployee(emp);
+            boolean result = EmployeesDoa.updateEmployee(emp);
             if(result == true){
-                JOptionPane.showMessageDialog(null, "Record Added Sucessfully","Sucess",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Record Updated Sucessfully","Sucess",JOptionPane.INFORMATION_MESSAGE);
             }
+            
         }
         catch(SQLException se){
-            JOptionPane.showMessageDialog(null, "Sorry Record is not added","Incomplete",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Sorry Record is not updated","Incomplete",JOptionPane.ERROR_MESSAGE);
             se.printStackTrace();
             return;
         }
@@ -285,6 +291,10 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
             se.printStackTrace();
         }
     }//GEN-LAST:event_cbIdActionPerformed
+
+    private void txtEmpSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpSalaryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpSalaryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,6 +359,10 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Unable to load employees Id","Incomplete",JOptionPane.ERROR_MESSAGE);
             se.printStackTrace();
         }
+    }
+
+    private boolean isEmpty() {
+        return !(txtEmpName.getText().isEmpty() || txtEmpSalary.getText().isEmpty());
     }
 
    

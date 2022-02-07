@@ -94,10 +94,10 @@ public class EmployeesDoa {
     public static boolean updateEmployee(EmployeesPojo emp)throws SQLException{
        Connection conn = DBConnection.getConnection();
         PreparedStatement ps = conn.prepareStatement("update employees set empname = ?, job = ?, salary = ? where empid = ?");
-        ps.setString(1, emp.getEmployeeId());
-        ps.setString(2, emp.getEmployeeName());
-        ps.setString(3, emp.getJob());
-        ps.setDouble(4, emp.getSalary());
+        ps.setString(4, emp.getEmployeeId());
+        ps.setString(1, emp.getEmployeeName());
+        ps.setString(2, emp.getJob());
+        ps.setDouble(3, emp.getSalary());
         int result = ps.executeUpdate();
         return result == 1;
     }
