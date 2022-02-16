@@ -64,4 +64,39 @@ public class ReceptionistDoa {
         }
         return allEmp;
     }
+    
+      
+    public static List<String> getAllReceptionistId() throws SQLException{
+        Connection conn  = DBConnection.getConnection();
+        Statement ps = conn.createStatement();
+        ResultSet rs = ps.executeQuery("select empid from users where usertype = 'Receptionist' order by empid");
+        List<String> empId = new ArrayList<>();
+        while(rs.next()){
+            empId.add(rs.getString(1));
+        }
+        return empId;
+    }
+    
+    public static ReceptionistPojo findEmpById(String empId) throws SQLException{
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement("select users.empid,empname,userid,job,salary from users,employees where users.empid = ? and usertype = 'Receptionist' and users.empid = employees.empid");
+        ps.setString(1, empId);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        ReceptionistPojo receptionist = new ReceptionistPojo();
+        receptionist.setEmpId(rs.getString(1));
+        receptionist.setEmpName(rs.getString(2));
+        receptionist.setUserId(rs.getString(3));
+        receptionist.setJob(rs.getString(4));
+        receptionist.setSalary(rs.getDouble(5));
+        return receptionist;
+    } 
+    
+     public static boolean deleteReceptionists(String empId)throws SQLException{
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement("delete from users where empid = ?");
+        ps.setString(1, empId);
+        int result = ps.executeUpdate();
+        return result ==1;
+    }
 }
