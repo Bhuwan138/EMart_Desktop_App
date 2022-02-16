@@ -5,6 +5,9 @@
         <group>
             <file>file:/E:/Emart%20desktop%20app/Emart/EMart_Desktop_App/src/emart/gui/AddReceptionistFrame.java</file>
             <file>file:/E:/Emart%20desktop%20app/Emart/EMart_Desktop_App/src/emart/gui/ManageReceptionistsFrame.java</file>
+            <file>file:/E:/Emart%20desktop%20app/Emart/EMart_Desktop_App/src/emart/gui/SplashScreenFrame.java</file>
+            <file>file:/E:/Emart%20desktop%20app/Emart/EMart_Desktop_App/src/emart/gui/LoginFrame.java</file>
+            <file>file:/E:/Emart%20desktop%20app/Emart/EMart_Desktop_App/src/emart/images/loginImage.jpg</file>
             <file>file:/E:/Emart%20desktop%20app/Emart/EMart_Desktop_App/src/emart/dao/ReceptionistDoa.java</file>
         </group>
     </open-files>
