@@ -6,13 +6,16 @@
 package emart.dao;
 
 import emart.dbutil.DBConnection;
+import emart.pojo.ReceptionistPojo;
 import emart.pojo.UserPojo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,4 +47,21 @@ public class ReceptionistDoa {
         int result = ps.executeUpdate();
         return result == 1;
     } 
+    
+    public static List<ReceptionistPojo> findAllReceptionist() throws SQLException{
+        Connection conn = DBConnection.getConnection();
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("select users.empid,empname,userid,job,salary from users,employees where usertype = 'Receptionist' and users.empid = employees.empid");
+        List<ReceptionistPojo> allEmp = new ArrayList<>();
+        while(rs.next()){
+            ReceptionistPojo rp = new ReceptionistPojo();
+            rp.setEmpId(rs.getString(1));
+            rp.setEmpName(rs.getString(2));
+            rp.setUserId(rs.getString(3));
+            rp.setJob(rs.getString(4));
+            rp.setSalary(rs.getDouble(5));
+            allEmp.add(rp);
+        }
+        return allEmp;
+    }
 }

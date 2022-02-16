@@ -94,7 +94,7 @@ public class ManageReceptionistsFrame extends javax.swing.JFrame {
         );
 
         jPanel3.setBackground(new java.awt.Color(102, 0, 102));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 204, 0)), "Manage Employees", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic Medium", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 204, 0)), "Manage Receptionists", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic Medium", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jButton1.setBackground(new java.awt.Color(255, 0, 153));
         jButton1.setFont(new java.awt.Font("Yu Gothic Light", 1, 24)); // NOI18N
