@@ -99,4 +99,25 @@ public class ReceptionistDoa {
         int result = ps.executeUpdate();
         return result ==1;
     }
-}
+     
+    public static Map<String, String> getReceptionistDetails() throws SQLException{
+        Connection conn = DBConnection.getConnection();
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("Select userid,username from users where usertype='Receptionist'");
+        Map<String,String> userDetails =new HashMap<>();
+        while(rs.next()){
+            String id = rs.getString(1);
+            String name = rs.getString(2);
+            userDetails.put(id, name);
+        }
+        return userDetails;
+    } 
+     
+    public static boolean updateReceptionists(String userId,String password) throws SQLException{
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement("update users set password = ? where userid = ?");
+        ps.setString(1, password);
+        ps.setString(2, userId);
+        return ps.executeUpdate() == 1;      
+    }
+ }
