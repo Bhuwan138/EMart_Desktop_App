@@ -5,7 +5,7 @@
  */
 package emart.gui;
 
-import emart.dao.ReceptionistDoa;
+import emart.dao.ReceptionistDAO;
 import emart.pojo.UserPojo;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -106,7 +106,7 @@ public class AddReceptionistFrame extends javax.swing.JFrame {
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Employee Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semibold", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.MatteBorder(null), "Employee Details (Receptionist)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI Semibold", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
 
         lblEmpId.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
         lblEmpId.setForeground(new java.awt.Color(255, 255, 255));
@@ -265,8 +265,8 @@ public class AddReceptionistFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        ManageEmployeesFrame manageEmployeesFrame = new ManageEmployeesFrame();
-        manageEmployeesFrame.setVisible(true);
+        ManageReceptionistsFrame manageReceptionistsFrame = new ManageReceptionistsFrame();
+        manageReceptionistsFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -303,7 +303,7 @@ public class AddReceptionistFrame extends javax.swing.JFrame {
            user.setPassword(pwFirstStr);
            user.setUserType("Receptionist");
            user.setUserName(userName);
-           boolean status = ReceptionistDoa.addReceptionist(user);
+           boolean status = ReceptionistDAO.addReceptionist(user);
            if(!status){
                 JOptionPane.showMessageDialog(null, "Receptionst not added.");
                 return;
@@ -385,7 +385,7 @@ public class AddReceptionistFrame extends javax.swing.JFrame {
 
     private void loadEmpId() {
         try{
-            receptionist = ReceptionistDoa.getNonRegisteredReceptionist();
+            receptionist = ReceptionistDAO.getNonRegisteredReceptionist();
             if(receptionist.isEmpty()){
                 JOptionPane.showMessageDialog(null, "No Non-Registerd Receptionist Present ");
                 btnAdd.setEnabled(false);

@@ -6,6 +6,7 @@
 package emart.gui;
 
 import emart.dbutil.DBConnection;
+import emart.pojo.UserProfile;
 
 /**
  *
@@ -15,6 +16,7 @@ public class ManagerOptionsFrame extends javax.swing.JFrame {
 
     public ManagerOptionsFrame() {
         initComponents();
+        lblUser.setText(UserProfile.getUserName());
     }
 
     /**
@@ -30,7 +32,7 @@ public class ManagerOptionsFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         logoutPanel = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
         lblManagerPanel = new javax.swing.JLabel();
@@ -55,10 +57,10 @@ public class ManagerOptionsFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 204, 204));
         jLabel2.setText("Welcome");
 
-        jLabel3.setBackground(new java.awt.Color(102, 255, 51));
-        jLabel3.setFont(new java.awt.Font("Yu Gothic Medium", 1, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 204, 204));
-        jLabel3.setText("Manager");
+        lblUser.setBackground(new java.awt.Color(102, 255, 51));
+        lblUser.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(255, 204, 204));
+        lblUser.setText("Manager");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -67,9 +69,9 @@ public class ManagerOptionsFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,8 +79,8 @@ public class ManagerOptionsFrame extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         logoutPanel.setBackground(new java.awt.Color(51, 51, 0));
@@ -265,7 +267,7 @@ public class ManagerOptionsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStocksActionPerformed
 
     private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
-        ViewOrdersFrame viewOrdersFrame = new ViewOrdersFrame();
+        ViewOrders viewOrdersFrame = new ViewOrders();
         viewOrdersFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnOrdersActionPerformed
@@ -314,11 +316,11 @@ public class ManagerOptionsFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnStocks;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblManagerPanel;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JPanel logoutPanel;
     // End of variables declaration//GEN-END:variables
 }

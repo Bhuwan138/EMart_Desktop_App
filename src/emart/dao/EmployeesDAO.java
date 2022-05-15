@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author Bhuwan Pandey
  */
-public class EmployeesDoa {
+public class EmployeesDAO {
     //to generate employeeId
 
     /**
@@ -102,7 +102,7 @@ public class EmployeesDoa {
         if(result == 0)
             return false;
         else{
-            boolean resultIsUser = UserDoa.isUserPresent(emp.getEmployeeId());
+            boolean resultIsUser = UserDAO.isUserPresent(emp.getEmployeeId());
             if(resultIsUser == false)
                 return true;
             ps = conn.prepareStatement("update users set usertype = ?, username = ? where empid = ?");

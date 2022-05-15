@@ -5,7 +5,7 @@
  */
 package emart.gui;
 
-import emart.dao.EmployeesDoa;
+import emart.dao.EmployeesDAO;
 import emart.pojo.EmployeesPojo;
 import java.sql.SQLException;
 import java.util.List;
@@ -260,7 +260,7 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
             emp.setEmployeeName(txtEmpName.getText());
             emp.setJob(cbJob.getSelectedItem().toString());
             emp.setSalary(Double.parseDouble(txtEmpSalary.getText()));
-            boolean result = EmployeesDoa.updateEmployee(emp);
+            boolean result = EmployeesDAO.updateEmployee(emp);
             if(result == true){
                 JOptionPane.showMessageDialog(null, "Record Updated Sucessfully","Sucess",JOptionPane.INFORMATION_MESSAGE);
             }
@@ -282,7 +282,7 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
     private void cbIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIdActionPerformed
         try{
             String empId = cbId.getSelectedItem().toString();
-            EmployeesPojo emp = EmployeesDoa.findEmpById(empId);
+            EmployeesPojo emp = EmployeesDAO.findEmpById(empId);
             txtEmpName.setText(emp.getEmployeeName());
             txtEmpSalary.setText(String.valueOf(emp.getSalary()));
             cbJob.setSelectedItem(emp.getJob());
@@ -352,7 +352,7 @@ public class UpdateEmployeesFrame extends javax.swing.JFrame {
     private void getEmpId() {
         try{
             cbId.removeAllItems();
-            List<String> empId = EmployeesDoa.getAllEmpId();
+            List<String> empId = EmployeesDAO.getAllEmpId();
             for(String id: empId){
                 cbId.addItem(id);
             }

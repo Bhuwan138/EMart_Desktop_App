@@ -5,6 +5,15 @@
  */
 package emart.gui;
 
+import emart.dao.OrderDAO;
+import emart.dao.ProductDAO;
+import emart.pojo.ProductPojo;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Bhuwan Pandey
@@ -14,8 +23,14 @@ public class BillingFrame extends javax.swing.JFrame {
     /**
      * Creates new form BillingFrame
      */
+    List<ProductPojo> al = new ArrayList<>();
+    DefaultTableModel tb;
+    double grandTotal = 0.0;
     public BillingFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        txtProductId.requestFocus();
+        tb = (DefaultTableModel)tbView.getModel();
     }
 
     /**
@@ -27,21 +42,206 @@ public class BillingFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnGenerateBill = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblProductId = new javax.swing.JLabel();
+        txtProductId = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbView = new javax.swing.JTable();
+        lblGrandTotal = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 0, 51));
+
+        btnGenerateBill.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
+        btnGenerateBill.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerateBill.setText("Generate Bill");
+        btnGenerateBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerateBillActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Total");
+
+        jPanel2.setBackground(new java.awt.Color(204, 0, 51));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Billing Options", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 30), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        lblProductId.setFont(new java.awt.Font("Yu Gothic Medium", 1, 18)); // NOI18N
+        lblProductId.setForeground(new java.awt.Color(255, 255, 255));
+        lblProductId.setText("Product ID");
+
+        txtProductId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProductIdActionPerformed(evt);
+            }
+        });
+
+        btnBack.setBackground(new java.awt.Color(255, 0, 153));
+        btnBack.setFont(new java.awt.Font("Yu Gothic Light", 1, 24)); // NOI18N
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setBackground(new java.awt.Color(255, 0, 153));
+        btnLogout.setFont(new java.awt.Font("Yu Gothic Light", 1, 24)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        tbView.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Product Id", "Product Name", "Product Price", "Our Price", "Comany Name", "Quantity", "Tax", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbView);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(txtProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtProductId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        lblGrandTotal.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 18)); // NOI18N
+        lblGrandTotal.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(476, 476, 476)
+                .addComponent(btnGenerateBill, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblGrandTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblGrandTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnGenerateBill, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGenerateBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateBillActionPerformed
+        try{
+            String orderId = OrderDAO.getNextOrderId();
+            if(OrderDAO.addOrder(al, orderId) && ProductDAO.updateStocks(al)){
+                JOptionPane.showMessageDialog(null, "Order of Rs." + grandTotal + "/- is generated sucessfully", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+                ViewOrdersFrame vof = new ViewOrdersFrame();
+                vof.setVisible(true);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Order Not created");
+            }
+        }catch(SQLException se){
+            JOptionPane.showMessageDialog(null, "Error in Database", "Error", JOptionPane.ERROR_MESSAGE);
+            //se.printStackTrace();
+        }
+    }//GEN-LAST:event_btnGenerateBillActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        ReceptionistOptionsFrame rof = new ReceptionistOptionsFrame();
+        rof.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        LoginFrame lFrame = new LoginFrame();
+        lFrame.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void txtProductIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductIdActionPerformed
+        
+        if(txtProductId.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please scan properly/ enter product id corectly","Incomplete", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        loadItemList(txtProductId.getText().trim());
+        
+    }//GEN-LAST:event_txtProductIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +279,78 @@ public class BillingFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnGenerateBill;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblGrandTotal;
+    private javax.swing.JLabel lblProductId;
+    private javax.swing.JTable tbView;
+    private javax.swing.JTextField txtProductId;
     // End of variables declaration//GEN-END:variables
+
+    private void loadItemList(String id) {
+        try{
+            ProductPojo p = ProductDAO.getProductsDetail(id);
+            if(p.getProductId() == null){
+                JOptionPane.showMessageDialog(null, "Please Enter a valid Product Id", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }   
+            int index = getProductId(id);
+            if(index == -1){
+                Object[] row = new Object[8];
+                int quantity = 1;
+                double amount = quantity * p.getOurPrice();
+                int tax = p.getTax();
+                double total = amount + (amount * tax /100 );
+                p.setQuantity(quantity);
+                p.setTotal(total);
+                row[0] = p.getProductId();
+                row[1] = p.getProductName();
+                row[2] = p.getProductPrice();
+                row[3] = p.getOurPrice();
+                row[4] = p.getProductCompanyName();
+                row[5] = p.getQuantity();
+                row[6] = p.getTax() + "%";
+                row[7] = p.getTotal();
+                tb.addRow(row);
+                al.add(p);
+                grandTotal += p.getTotal();
+                lblGrandTotal.setText(grandTotal + "");
+            }else{
+                ProductPojo product = al.get(index);
+                int quantity = (int)tb.getValueAt(index, 5);
+                double newAmount = product.getOurPrice()* quantity;
+                int tax = product.getTax();
+                newAmount = (newAmount) + (newAmount * tax /100);
+                double total = (double)tb.getValueAt(index, 7);
+                tb.setValueAt(++quantity, index, 5);
+                tb.setValueAt(newAmount*quantity, index, 7);
+                grandTotal += newAmount;
+                product.setQuantity(quantity);
+                product.setTotal(total + newAmount);
+                al.set(index, product);
+                lblGrandTotal.setText(grandTotal + "");
+                
+            }
+        }catch(SQLException se){
+            JOptionPane.showMessageDialog(null, "Error in Database", "Error", JOptionPane.ERROR_MESSAGE);
+            //se.printStackTrace();
+        }
+    }
+    
+    private int getProductId(String id){
+        int index = -1;
+        for(int i = 0;i< al.size();i++){
+            ProductPojo p = al.get(i);
+            if(p.getProductId().equals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 }

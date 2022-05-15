@@ -5,7 +5,7 @@
  */
 package emart.gui;
 
-import emart.dao.EmployeesDoa;
+import emart.dao.EmployeesDAO;
 import emart.pojo.EmployeesPojo;
 import java.sql.SQLException;
 import java.util.List;
@@ -408,7 +408,7 @@ public class RemoveEmployeesFrame extends javax.swing.JFrame {
     private void cbId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbId1ActionPerformed
         try{
             String empId = cbId1.getSelectedItem().toString();
-            EmployeesPojo emp = EmployeesDoa.findEmpById(empId);
+            EmployeesPojo emp = EmployeesDAO.findEmpById(empId);
             txtEmpName2.setText(emp.getEmployeeName());
             txtEmpSalary2.setText(String.valueOf(emp.getSalary()));
             cbJob2.setSelectedItem(emp.getJob());
@@ -426,7 +426,7 @@ public class RemoveEmployeesFrame extends javax.swing.JFrame {
             emp.setEmployeeName(txtEmpName2.getText());
             emp.setJob(cbJob2.getSelectedItem().toString());
             emp.setSalary(Double.parseDouble(txtEmpSalary2.getText()));
-            boolean result = EmployeesDoa.deleteEmployee(emp.getEmployeeId());
+            boolean result = EmployeesDAO.deleteEmployee(emp.getEmployeeId());
             if(result == true){
                 JOptionPane.showMessageDialog(null, "Record Deleted Sucessfully","Sucess",JOptionPane.INFORMATION_MESSAGE);
                 try{
@@ -517,7 +517,7 @@ public class RemoveEmployeesFrame extends javax.swing.JFrame {
     private void getEmpId() {
         try{
             
-            List<String> empId = EmployeesDoa.getAllEmpId();
+            List<String> empId = EmployeesDAO.getAllEmpId();
             for(String id: empId){
                 cbId1.addItem(id);
             }
