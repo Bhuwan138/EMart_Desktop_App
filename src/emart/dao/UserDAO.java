@@ -18,7 +18,7 @@ import java.sql.SQLException;
  *
  * @author Bhuwan Pandey
  */
-public class UserDoa {
+public class UserDAO {
     
     //checking for user id and pass to validate user
     public static boolean validateUser(UserPojo user)throws SQLException{

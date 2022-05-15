@@ -5,8 +5,8 @@
  */
 package emart.gui;
 
-import emart.dao.EmployeesDoa;
-import emart.dao.ReceptionistDoa;
+import emart.dao.EmployeesDAO;
+import emart.dao.ReceptionistDAO;
 import emart.pojo.ReceptionistPojo;
 import java.sql.SQLException;
 import java.util.List;
@@ -278,7 +278,7 @@ public class RemoveReceptionistsFrame extends javax.swing.JFrame {
     private void cbId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbId1ActionPerformed
         try{
             String empId = cbId1.getSelectedItem().toString();
-            ReceptionistPojo receptionist = ReceptionistDoa.findEmpById(empId);
+            ReceptionistPojo receptionist = ReceptionistDAO.findEmpById(empId);
             txtEmpName2.setText(receptionist.getEmpName());
             txtUserId.setText(receptionist.getUserId());
             txtEmpSalary2.setText(String.valueOf(receptionist.getSalary()));
@@ -298,7 +298,7 @@ public class RemoveReceptionistsFrame extends javax.swing.JFrame {
             receptionist.setEmpName(txtEmpName2.getText());
             receptionist.setJob(cbJob2.getSelectedItem().toString());
             receptionist.setSalary(Double.parseDouble(txtEmpSalary2.getText()));
-            boolean result = ReceptionistDoa.deleteReceptionists(receptionist.getEmpId());
+            boolean result = ReceptionistDAO.deleteReceptionists(receptionist.getEmpId());
             if(result == true){
                 JOptionPane.showMessageDialog(null, "Record Deleted Sucessfully","Sucess",JOptionPane.INFORMATION_MESSAGE);
                 try{
@@ -386,7 +386,7 @@ public class RemoveReceptionistsFrame extends javax.swing.JFrame {
      private void getReceptionistId() {
         try{
             
-            List<String> empId = ReceptionistDoa.getAllReceptionistId();
+            List<String> empId = ReceptionistDAO.getAllReceptionistId();
             for(String id: empId){
                 cbId1.addItem(id);
             }

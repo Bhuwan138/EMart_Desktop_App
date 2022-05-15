@@ -267,7 +267,7 @@ public class ManagerOptionsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStocksActionPerformed
 
     private void btnOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdersActionPerformed
-        ViewOrdersFrame viewOrdersFrame = new ViewOrdersFrame();
+        ViewOrders viewOrdersFrame = new ViewOrders();
         viewOrdersFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnOrdersActionPerformed

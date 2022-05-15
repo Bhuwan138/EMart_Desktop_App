@@ -5,7 +5,7 @@
  */
 package emart.gui;
 
-import emart.dao.UserDoa;
+import emart.dao.UserDAO;
 import emart.pojo.UserPojo;
 import emart.pojo.UserProfile;
 import java.sql.SQLException;
@@ -254,7 +254,7 @@ public class LoginFrame extends javax.swing.JFrame {
         user.setPassword(password);
         user.setUserType(userType);
         try{
-           boolean result = UserDoa.validateUser(user);
+           boolean result = UserDAO.validateUser(user);
            if(result == false){
                  JOptionPane.showMessageDialog(null, "Please enter correct id/password/usertype","Error",JOptionPane.ERROR_MESSAGE);
                  return;

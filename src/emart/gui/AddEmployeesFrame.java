@@ -5,7 +5,7 @@
  */
 package emart.gui;
 
-import emart.dao.EmployeesDoa;
+import emart.dao.EmployeesDAO;
 import emart.pojo.EmployeesPojo;
 import java.sql.SQLException;
 import java.util.Collections;
@@ -256,7 +256,7 @@ public class AddEmployeesFrame extends javax.swing.JFrame {
         emp.setEmployeeName(txtEmpName.getText());
         emp.setJob(cbJob.getSelectedItem().toString());
         emp.setSalary(Double.parseDouble(txtEmpSalary.getText()));
-        boolean result = EmployeesDoa.addEmployee(emp);
+        boolean result = EmployeesDAO.addEmployee(emp);
         if(result == true){
             JOptionPane.showMessageDialog(null, "Record Added Sucessfully","Sucess",JOptionPane.INFORMATION_MESSAGE);
             clearText();
@@ -344,7 +344,7 @@ public class AddEmployeesFrame extends javax.swing.JFrame {
 
     private void loadEmpId() {
         try{
-            String empId = EmployeesDoa.getEmployeeId();
+            String empId = EmployeesDAO.getEmployeeId();
             txtId.setText(empId);
         }
         catch(SQLException se){

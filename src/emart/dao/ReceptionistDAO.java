@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @author Bhuwan Pandey
  */
-public class ReceptionistDoa {
+public class ReceptionistDAO {
     public static Map<String, String> getNonRegisteredReceptionist() throws SQLException{
         Connection conn = DBConnection.getConnection();
         Statement st = conn.createStatement();

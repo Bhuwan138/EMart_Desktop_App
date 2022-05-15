@@ -5,8 +5,8 @@
  */
 package emart.gui;
 
-import emart.dao.EmployeesDoa;
-import emart.dao.ReceptionistDoa;
+import emart.dao.EmployeesDAO;
+import emart.dao.ReceptionistDAO;
 import emart.pojo.EmployeesPojo;
 import emart.pojo.ReceptionistPojo;
 import java.sql.SQLException;
@@ -205,7 +205,7 @@ public class ViewReceptionistsFrame extends javax.swing.JFrame {
 
     private void loadReceptionistDetails() {
         try{
-            List<ReceptionistPojo> receptionistLists = ReceptionistDoa.findAllReceptionist();
+            List<ReceptionistPojo> receptionistLists = ReceptionistDAO.findAllReceptionist();
             DefaultTableModel tb = (DefaultTableModel)tbView.getModel();
             Object []emp = new Object[5];
             for(ReceptionistPojo receptionistList: receptionistLists){

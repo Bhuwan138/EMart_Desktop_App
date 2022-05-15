@@ -5,7 +5,7 @@
  */
 package emart.gui;
 
-import emart.dao.EmployeesDoa;
+import emart.dao.EmployeesDAO;
 import emart.pojo.EmployeesPojo;
 import java.sql.SQLException;
 import java.util.List;
@@ -195,7 +195,7 @@ public class ViewEmployeesFrame extends javax.swing.JFrame {
 
     private void viewEmployeeData() {
         try{
-            List<EmployeesPojo> empLists = EmployeesDoa.getAllEmployee();
+            List<EmployeesPojo> empLists = EmployeesDAO.getAllEmployee();
             DefaultTableModel tb = (DefaultTableModel)tbView.getModel();
             Object []emp = new Object[4];
             for(EmployeesPojo empList: empLists){

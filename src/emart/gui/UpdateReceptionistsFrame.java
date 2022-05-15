@@ -5,8 +5,8 @@
  */
 package emart.gui;
 
-import emart.dao.EmployeesDoa;
-import emart.dao.ReceptionistDoa;
+import emart.dao.EmployeesDAO;
+import emart.dao.ReceptionistDAO;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -253,7 +253,7 @@ public class UpdateReceptionistsFrame extends javax.swing.JFrame {
         }
         try{
             String userId = cbUserId.getSelectedItem().toString();
-            boolean result = ReceptionistDoa.updateReceptionists(userId, pass);
+            boolean result = ReceptionistDAO.updateReceptionists(userId, pass);
             if(!result){
                 JOptionPane.showMessageDialog(null, "Pasword not changed","Error",JOptionPane.ERROR_MESSAGE);
                 clearText();
@@ -335,7 +335,7 @@ public class UpdateReceptionistsFrame extends javax.swing.JFrame {
 
     private void getUserDetails() {
         try{
-            userDetails = ReceptionistDoa.getReceptionistDetails();
+            userDetails = ReceptionistDAO.getReceptionistDetails();
             if(userDetails.isEmpty()){
                 JOptionPane.showMessageDialog(null, "No Record found !!","Not Found",JOptionPane.INFORMATION_MESSAGE);
                 return;

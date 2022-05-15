@@ -5,7 +5,7 @@
  */
 package emart.gui;
 
-import emart.dao.ReceptionistDoa;
+import emart.dao.ReceptionistDAO;
 import emart.pojo.UserPojo;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -303,7 +303,7 @@ public class AddReceptionistFrame extends javax.swing.JFrame {
            user.setPassword(pwFirstStr);
            user.setUserType("Receptionist");
            user.setUserName(userName);
-           boolean status = ReceptionistDoa.addReceptionist(user);
+           boolean status = ReceptionistDAO.addReceptionist(user);
            if(!status){
                 JOptionPane.showMessageDialog(null, "Receptionst not added.");
                 return;
@@ -385,7 +385,7 @@ public class AddReceptionistFrame extends javax.swing.JFrame {
 
     private void loadEmpId() {
         try{
-            receptionist = ReceptionistDoa.getNonRegisteredReceptionist();
+            receptionist = ReceptionistDAO.getNonRegisteredReceptionist();
             if(receptionist.isEmpty()){
                 JOptionPane.showMessageDialog(null, "No Non-Registerd Receptionist Present ");
                 btnAdd.setEnabled(false);
